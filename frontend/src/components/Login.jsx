@@ -1,33 +1,26 @@
 import React, { useState } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { findUser } from "../api/index";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
 
-  const handleClick = async(e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
 
-    console.log('made api call');
-
     const status = await findUser({
-      email,pass
-    })
+      email,
+      pass,
+    });
 
-    console.log('got res in sign');
-    setEmail('');
-    setPass('');
+    setEmail("");
+    setPass("");
 
-    
-
-
-    if(status){
-      console.log(status);
-      navigate('/home')
+    if (status) {
+      navigate("/home");
     }
   };
 
@@ -38,12 +31,12 @@ function Login() {
           <label htmlFor="email" className="block mt-2 mb-1">
             Email
           </label>
-          <input 
-            type="email" 
-            id="email" 
-            placeholder="email" 
+          <input
+            type="email"
+            id="email"
+            placeholder="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}  
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -51,13 +44,13 @@ function Login() {
           <label htmlFor="password" className="block mt-2 mb-1">
             password
           </label>
-          <input 
-            type="password" 
-            id="password" 
+          <input
+            type="password"
+            id="password"
             placeholder="password"
             value={pass}
             onChange={(e) => setPass(e.target.value)}
-         />
+          />
         </div>
 
         <button

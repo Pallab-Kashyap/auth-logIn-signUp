@@ -13,7 +13,6 @@ async function createUser(name, email, pass) {
 
   try {
     await client.connect();
-    console.log("connected with db");
 
     res = await client.query(
       "insert into user_info (username, email, password) values ($1, $2, $3)",
@@ -23,7 +22,7 @@ async function createUser(name, email, pass) {
     console.log(err);
   } finally {
     client.end();
-    console.log("connection ended");
+
     return res;
   }
 }
@@ -41,7 +40,6 @@ async function findUser(email, pass) {
 
   try {
     await client.connect();
-    console.log("connected with db");
 
     const res = await client.query(
       "select password from user_info where email= $1",
@@ -56,7 +54,6 @@ async function findUser(email, pass) {
       if (pass === res.rows[0].password) {
         result = true;
       } else {
-        console.log("wrong");
       }
     } else {
       console.log("err");
@@ -65,8 +62,8 @@ async function findUser(email, pass) {
     console.log(err);
   } finally {
     client.end();
-    console.log("connection ended");
-    return result
+
+    return result;
   }
 }
 
