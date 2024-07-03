@@ -27,6 +27,8 @@ async function createUser(name, email, pass) {
   }
 }
 
+
+
 async function findUser(email, pass) {
   const client = new Client({
     user: "postgres",
@@ -66,6 +68,8 @@ async function findUser(email, pass) {
     return result;
   }
 }
+
+findUser('arav@g.c', 'arav123')
 
 module.exports = {
   createUser,
