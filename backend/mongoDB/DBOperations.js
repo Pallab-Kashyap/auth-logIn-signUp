@@ -1,4 +1,4 @@
-const { User, connectDB } = require("./mongoDB");
+const { User } = require("./mongoDB");
 
 async function createUser(name, email, pass) {
   const result = await User.create({
@@ -11,8 +11,6 @@ async function createUser(name, email, pass) {
 }
 
 async function findUser(email, pass) {
-  await connectDB();
-
   const result = await User.find({ email: email });
 
   if (result[0].password === pass) {
